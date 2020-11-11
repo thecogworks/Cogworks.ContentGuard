@@ -2,12 +2,12 @@
 {
     public interface IBackOfficeContentBlockerService
     {
-        bool IsPageOccupied(string currentUserEmail, int pageId);
+        bool isPageBlocked(string currentUserEmail, int pageId);
     }
 
     public class BackOfficeContentBlockerService : IBackOfficeContentBlockerService
     {
-        public bool IsPageOccupied(string currentUserEmail, int pageId)
+        public bool isPageBlocked(string currentUserEmail, int pageId)
         {
             return true;
         }
