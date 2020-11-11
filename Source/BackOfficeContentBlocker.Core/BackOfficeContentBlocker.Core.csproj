@@ -144,7 +144,7 @@
   <ItemGroup>
     <Compile Include="Components\BackOfficeContentBlockerComponent.cs" />
     <Compile Include="Composers\BackOfficeContentBlockerComposer.cs" />
-    <Compile Include="Migrations\AddCommentsTable.cs" />
+    <Compile Include="Migrations\AddBackOfficeContentBlockerTable.cs" />
     <Compile Include="Models\Schemas\BackOfficeContentBlockerSchema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BackOfficeContentBlockerService.cs" />
