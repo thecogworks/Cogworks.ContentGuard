@@ -1,0 +1,1 @@
+backoffice-content-blocker
