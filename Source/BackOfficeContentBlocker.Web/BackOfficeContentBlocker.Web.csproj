@@ -273,6 +273,7 @@
     <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\controller.js" />
     <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\editor-manager.html" />
     <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\interceptor.js" />
+    <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\resources.js" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
