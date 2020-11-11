@@ -7,6 +7,8 @@
 
     backOfficeContentBlockerResources.$inject = ['$http'];
 
+    var apiRoot = '/umbraco/backoffice/ContentBlocker/BackOfficeContentBlockerApi/';
+
     function backOfficeContentBlockerResources($http) {
 
         var service = {
@@ -16,7 +18,7 @@
         return service;
 
         function isPageBlocked() {
-            return $http.get(API_ROOT + 'IndexEvents');
+            return $http.get(apiRoot + 'IsPageBlocked');
         }
     }
 })();
