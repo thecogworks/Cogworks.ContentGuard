@@ -12,13 +12,18 @@
     function backOfficeContentBlockerResources($http) {
 
         var service = {
-            isPageBlocked: isPageBlocked
+            isPageBlocked: isPageBlocked,
+            lockPage: lockPage
         };
 
         return service;
 
         function isPageBlocked() {
             return $http.get(apiRoot + 'IsPageBlocked');
+        }
+
+        function lockPage() {
+            return $http.get(apiRoot + 'LockPage');
         }
     }
 })();

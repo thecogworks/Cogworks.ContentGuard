@@ -2,12 +2,18 @@
 {
     public interface IBackOfficeContentBlockerService
     {
-        bool isPageBlocked(string currentUserEmail, int pageId);
+        bool IsPageBlocked(string currentUserEmail, int pageId);
+        bool LockPage(string currentUserEmail, int pageId);
     }
 
     public class BackOfficeContentBlockerService : IBackOfficeContentBlockerService
     {
-        public bool isPageBlocked(string currentUserEmail, int pageId)
+        public bool IsPageBlocked(string currentUserEmail, int pageId)
+        {
+            return true;
+        }
+
+        public bool LockPage(string currentUserEmail, int pageId)
         {
             return true;
         }

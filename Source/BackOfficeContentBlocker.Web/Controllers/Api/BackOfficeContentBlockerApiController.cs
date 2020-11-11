@@ -18,9 +18,17 @@ namespace BackOfficeContentBlocker.Web.Controllers.Api
         [HttpGet]
         public IHttpActionResult IsPageBlocked(string currentUserEmail, int pageId)
         {
-            var isPageOccupied = _contentBlockerService.isPageBlocked(currentUserEmail, pageId);
+            var isPageOccupied = _contentBlockerService.IsPageBlocked(currentUserEmail, pageId);
 
             return Json(isPageOccupied);
+        }
+
+        [HttpGet]
+        public IHttpActionResult LockPage(string currentUserEmail, int pageId)
+        {
+            var pageLocked = _contentBlockerService.LockPage(currentUserEmail, pageId);
+
+            return Json(pageLocked);
         }
     }
 }
