@@ -13,7 +13,8 @@
 
         var service = {
             isPageBlocked: isPageBlocked,
-            lockPage: lockPage
+            lockPage: lockPage,
+            removeLock: removeLock
         };
 
         return service;
@@ -24,6 +25,10 @@
 
         function lockPage() {
             return $http.get(apiRoot + 'LockPage');
+        }
+
+        function removeLock() {
+            return $http.get(apiRoot + 'RemoveLock');
         }
     }
 })();

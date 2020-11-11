@@ -30,5 +30,13 @@ namespace BackOfficeContentBlocker.Web.Controllers.Api
 
             return Json(pageLocked);
         }
+
+        [HttpGet]
+        public IHttpActionResult RemoveLock(string currentUserEmail)
+        {
+            var lockRemoved = _contentBlockerService.RemoveLock(currentUserEmail);
+
+            return Json(lockRemoved);
+        }
     }
 }

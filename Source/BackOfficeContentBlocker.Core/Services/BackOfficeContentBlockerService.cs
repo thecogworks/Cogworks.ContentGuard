@@ -10,6 +10,7 @@ namespace BackOfficeContentBlocker.Core.Services
     {
         bool IsPageBlocked(string currentUserEmail, int pageId);
         bool LockPage(string currentUserEmail, int pageId);
+        bool RemoveLock(string currentUserEmail);
     }
 
     public class BackOfficeContentBlockerService : IBackOfficeContentBlockerService
