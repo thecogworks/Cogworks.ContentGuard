@@ -16,6 +16,6 @@ namespace BackOfficeContentBlocker.Core.Models.Schemas
 
         [Column("PageId")] public int PageId { get; set; }
 
-        [Column("TimeStamp")] public int TimeStamp { get; set; }
+        [Column("TimeStamp")] public string TimeStamp { get; set; }
     }
 }
