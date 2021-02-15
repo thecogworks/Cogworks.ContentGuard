@@ -1,8 +1,0 @@
-﻿{
-    javascript: [
-		'~/App_Plugins/BackOfficeContentBlocker.EditorManager/app.js',
-    	'~/App_Plugins/BackOfficeContentBlocker.EditorManager/contentguard.controller.js',
-		'~/App_Plugins/BackOfficeContentBlocker.EditorManager/contentguard.interceptor.js',
-    	'~/App_Plugins/BackOfficeContentBlocker.EditorManager/contentguard.resources.js',
-    ]
-}

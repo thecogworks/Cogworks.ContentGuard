@@ -201,15 +201,13 @@ Build/Output/
 *.orig
 
 # Umbraco
-Source/**/App_Data/
-Source/**/Media/
-!Source/**/Media/Web.config
-Source/**/Umbraco
-Source/**/Umbraco_Client
-Source/**/local
+src/**/App_Data/
+src/**/Media/
+!src/**/Media/Web.config
+src/**/Umbraco
+src/**/Umbraco_Client
+src/**/local
 
 # Other
-Source/.vs
+src/.vs
 ood.flag
-Frontend/dist/
-/Source/CanadaLife.Functions/local.settings.json
