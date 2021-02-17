@@ -19,22 +19,20 @@
                             console.log(user);
 
                             contentGuardService.isPageLocked(pageId, user.name)
-                                .then(function (isLocked) {
-
-                                    console.log(isLocked);
+                                .then(function (data) {
 
                                     // 1. If page is not LOCKED = enter and LOCK it for the current user (comment)
                                     // 2. If page is LOCKED = display the notification message and let user decide what to do
                                     // 3. Option 1 after point 2: Leave = redirect to the main /content url = don't touch this page
                                     // 4. Option 2 after point 2: Takeover = UNLOCK the page and LOCK for the user who triggered the action
-                                    if (!isLocked) {
+                                    if (!data.isPageLocked) {
                                         contentGuardService.lockPage(pageId, user.name);
                                     }
                                     else {
                                         var overlay = {
                                             title: "🛡️ Content Guard - This page is locked",
-                                            confirmMessage: "{{username}} is currently editing this page. Do you want to take over?",
-                                            content: "If you'll take over, the changes not saved by {{username}} might got lost.",
+                                            confirmMessage: data.currentlyEditingUserName + " is currently editing this page. Do you want to take over?",
+                                            content: "If you'll take over, the changes not saved by " + data.currentlyEditingUserName + " might got lost.",
                                             disableBackdropClick: true,
                                             closeButtonLabelKey: "contentGuard_closeLabel",
                                             submitButtonLabelKey: "contentGuard_submitLabel",
