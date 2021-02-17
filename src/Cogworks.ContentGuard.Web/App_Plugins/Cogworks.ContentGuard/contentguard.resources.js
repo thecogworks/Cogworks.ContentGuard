@@ -14,7 +14,7 @@
             );
 
         const service = {
-            isPageLocked: (pageId) => request('GET', apiRoot + 'IsLocked?pageId=' + pageId),
+            isPageLocked: (pageId, ownerUsername) => request('GET', apiRoot + 'IsLocked?pageId=' + pageId + '&ownerUsername=' + ownerUsername),
             lockPage: (pageId, ownerUsername) => request('GET', apiRoot + 'Lock?pageId=' + pageId + '&ownerUsername=' + ownerUsername),
             unlockPage: (pageId) => request('GET', apiRoot + 'Unlock?pageId=' + pageId)
         };

@@ -16,9 +16,9 @@ namespace BackOfficeContentBlocker.Web.Controllers.Api
         }
 
         [HttpGet]
-        public IHttpActionResult IsLocked(int pageId)
+        public IHttpActionResult IsLocked(int pageId, string ownerUsername)
         {
-            var isPageLocked = _contentGuardService.IsLocked(pageId);
+            var isPageLocked = _contentGuardService.IsLocked(pageId, ownerUsername);
 
             return Json(isPageLocked);
         }

@@ -1,11 +1,12 @@
-﻿using Umbraco.Core.Models;
+﻿using System.Linq;
+using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 
 namespace Cogworks.ContentGuard.Core.Services
 {
     public interface IContentGuardService
     {
-        bool IsLocked(int pageId);
+        bool IsLocked(int pageId, string ownerUsername);
         void Lock(int pageId, string ownerUsername);
         void Unlock(int pageId);
     }
@@ -22,9 +23,11 @@ namespace Cogworks.ContentGuard.Core.Services
             _contentGuardRelationType = _relationService.GetRelationTypeByAlias(_contentGuardRelationTypeAlias);
         }
 
-        public bool IsLocked(int pageId)
+        public bool IsLocked(int pageId, string ownerUsername)
         {
-            return _relationService.AreRelated(pageId, pageId, _contentGuardRelationTypeAlias);
+            var existingLocks = _relationService.GetByParentOrChildId(pageId, _contentGuardRelationTypeAlias);
+
+            return existingLocks.Any(x => !x.Comment.Equals(ownerUsername));
         }
 
         public void Lock(int pageId, string ownerUsername)
