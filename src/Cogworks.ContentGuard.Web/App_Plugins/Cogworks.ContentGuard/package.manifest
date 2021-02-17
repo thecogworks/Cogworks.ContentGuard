@@ -1,0 +1,6 @@
+﻿{
+  "javascript": [
+    "~/App_Plugins/Cogworks.ContentGuard/contentguard.resources.js",
+    "~/App_Plugins/Cogworks.ContentGuard/contentguard.interceptor.js"
+  ]
+}

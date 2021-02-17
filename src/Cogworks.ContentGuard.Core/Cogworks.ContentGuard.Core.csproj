@@ -142,12 +142,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\BackOfficeContentBlockerComponent.cs" />
-    <Compile Include="Composers\BackOfficeContentBlockerComposer.cs" />
-    <Compile Include="Migrations\AddBackOfficeContentBlockerTable.cs" />
-    <Compile Include="Models\Schemas\BackOfficeContentBlockerSchema.cs" />
+    <Compile Include="Components\ContentGuardComponent.cs" />
+    <Compile Include="Composers\ContentGuardComposer.cs" />
+    <Compile Include="Migrations\AddContentGuardRelationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BackOfficeContentBlockerService.cs" />
+    <Compile Include="Services\ContentGuardService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

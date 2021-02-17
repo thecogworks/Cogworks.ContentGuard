@@ -1,4 +1,4 @@
-﻿using BackOfficeContentBlocker.Core.Migrations;
+﻿using Cogworks.ContentGuard.Core.Migrations;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Migrations;
@@ -6,16 +6,16 @@ using Umbraco.Core.Migrations.Upgrade;
 using Umbraco.Core.Scoping;
 using Umbraco.Core.Services;
 
-namespace BackOfficeContentBlocker.Core.Components
+namespace Cogworks.ContentGuard.Core.Components
 {
-    public class BackOfficeContentBlockerComponent : IComponent
+    public class ContentGuardComponent : IComponent
     {
         private readonly IScopeProvider _scopeProvider;
         private readonly IMigrationBuilder _migrationBuilder;
         private readonly IKeyValueService _keyValueService;
         private readonly ILogger _logger;
 
-        public BackOfficeContentBlockerComponent(IScopeProvider scopeProvider, IMigrationBuilder migrationBuilder,
+        public ContentGuardComponent(IScopeProvider scopeProvider, IMigrationBuilder migrationBuilder,
             IKeyValueService keyValueService, ILogger logger)
         {
             _scopeProvider = scopeProvider;
@@ -28,12 +28,12 @@ namespace BackOfficeContentBlocker.Core.Components
         {
             // Create a migration plan for a specific project/feature
             // We can then track that latest migration state/step for this project/feature
-            var migrationPlan = new MigrationPlan("BackOfficeContentBlocker");
+            var migrationPlan = new MigrationPlan("ContentGuard");
 
             // This is the steps we need to take
             // Each step in the migration adds a unique value
             migrationPlan.From(string.Empty)
-                .To<AddBackOfficeContentBlockerTable>("backofficecontentblocker-db");
+                .To<AddContentGuardRelationType>("contentguard-init");
 
             // Go and upgrade our site (Will check if it needs to do the work or not)
             // Based on the current/latest step

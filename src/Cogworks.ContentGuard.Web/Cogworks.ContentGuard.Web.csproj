@@ -268,11 +268,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\app.js" />
-    <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\contentguard.controller.js" />
-    <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\editor-manager.html" />
-    <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\contentguard.interceptor.js" />
-    <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\contentguard.resources.js" />
+    <Content Include="App_Plugins\Cogworks.ContentGuard\editor-manager.html" />
+    <Content Include="App_Plugins\Cogworks.ContentGuard\contentguard.interceptor.js" />
+    <Content Include="App_Plugins\Cogworks.ContentGuard\contentguard.resources.js" />
+    <Content Include="App_Plugins\Cogworks.ContentGuard\lang\en-US.xml" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -297,7 +296,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Api\BackOfficeContentBlockerApiController.cs" />
+    <Compile Include="Controllers\Api\ContentGuardApiController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -312,7 +311,7 @@
     <Content Include="config\HealthChecks.config" />
     <Content Include="config\ClientDependency.config" />
     <Content Include="config\BackOfficeTours\getting-started.json" />
-    <Content Include="App_Plugins\BackOfficeContentBlocker.EditorManager\package.manifest" />
+    <Content Include="App_Plugins\Cogworks.ContentGuard\package.manifest" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
