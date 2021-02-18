@@ -33,7 +33,7 @@ namespace BackOfficeContentBlocker.Web.Controllers.Api
         {
             _contentGuardService.Lock(pageId, ownerUsername);
 
-            return Json("true");
+            return Ok();
         }
 
         [HttpGet]
@@ -41,7 +41,7 @@ namespace BackOfficeContentBlocker.Web.Controllers.Api
         {
             _contentGuardService.Unlock(pageId);
 
-            return Json("true");
+            return Ok();
         }
     }
 }
