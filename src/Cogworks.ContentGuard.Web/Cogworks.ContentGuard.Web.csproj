@@ -268,9 +268,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\Cogworks.ContentGuard\contentguard.controller.js" />
     <Content Include="App_Plugins\Cogworks.ContentGuard\editor-manager.html" />
     <Content Include="App_Plugins\Cogworks.ContentGuard\contentguard.interceptor.js" />
     <Content Include="App_Plugins\Cogworks.ContentGuard\contentguard.resources.js" />
+    <Content Include="App_Plugins\Cogworks.ContentGuard\guard-button.html" />
     <Content Include="App_Plugins\Cogworks.ContentGuard\lang\en-US.xml" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />

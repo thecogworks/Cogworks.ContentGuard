@@ -1,6 +1,22 @@
 ﻿{
+  "contentApps": [
+    {
+      "name": "Content Guard",
+      "alias": "contentGuard",
+      "weidht": "1",
+      "icon": "icon-shield",
+      "view": "~/App_Plugins/Cogworks.ContentGuard/guard-button.html",
+      "show": [
+        "+content/*",
+        "-media/*",
+        "-member/*",
+        "-contentType/*"
+      ]
+    }
+  ],
   "javascript": [
     "~/App_Plugins/Cogworks.ContentGuard/contentguard.resources.js",
-    "~/App_Plugins/Cogworks.ContentGuard/contentguard.interceptor.js"
+    "~/App_Plugins/Cogworks.ContentGuard/contentguard.interceptor.js",
+    "~/App_Plugins/Cogworks.ContentGuard/contentguard.controller.js"
   ]
 }

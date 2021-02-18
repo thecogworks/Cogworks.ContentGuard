@@ -16,8 +16,6 @@
                         var contentGuardService = $injector.get("contentGuardService");
 
                         userService.getCurrentUser().then(function (user) {
-                            console.log(user);
-
                             contentGuardService.isPageLocked(pageId, user.name)
                                 .then(function (data) {
 

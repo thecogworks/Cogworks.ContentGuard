@@ -1,0 +1,23 @@
+﻿<div ng-controller="Cogworks.Guard.Controller as vm">
+    <umb-box>
+        <umb-box-header title="Contend Guard"></umb-box-header>
+        <umb-box-content>
+            <div>
+                <p>Have you finished editing this page? Would you like to unlock this page to allow other editors access.</p>
+            </div>
+
+            <umb-button action="vm.clickCommand()"
+                        type="button"
+                        button-style="action"
+                        state="vm.buttonState"
+                        label="Unlock"
+                        disabled="vm.buttonState === 'busy'">
+            </umb-button>
+
+            <hr />
+            <div ng-if="vm.notification">
+                <p>{{vm.notification}}</p>
+            </div>
+        </umb-box-content>
+    </umb-box>
+</div>
