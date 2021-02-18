@@ -42,9 +42,9 @@
                                             submit: function () {
                                                 // UNLOCK + redirect? set up lock?
                                                 contentGuardService.unlockPage(pageId)
-                                                    .then(function (result) {
+                                                    .then(function() {
                                                         window.location.reload();
-                                                    })
+                                                    });
                                             }
                                         };
                                         overlayService.confirm(overlay);
