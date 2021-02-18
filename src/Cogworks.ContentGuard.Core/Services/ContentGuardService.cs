@@ -6,7 +6,7 @@ namespace Cogworks.ContentGuard.Core.Services
 {
     public interface IContentGuardService
     {
-        string PageDetails(int pageId);
+        string GetPageEditingUser(int pageId);
         bool IsLocked(int pageId, string ownerUsername);
         void Lock(int pageId, string ownerUsername);
         void Unlock(int pageId);
@@ -43,7 +43,7 @@ namespace Cogworks.ContentGuard.Core.Services
             _relationService.Save(relation);
         }
 
-        public string PageDetails(int pageId)
+        public string GetPageEditingUser(int pageId)
         {
             var existingLocks = _relationService.GetByParentOrChildId(pageId, _contentGuardRelationTypeAlias);
 

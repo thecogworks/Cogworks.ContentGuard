@@ -19,7 +19,11 @@ namespace Cogworks.ContentGuard.Core.Migrations
             Logger.Debug<AddContentGuardRelationType>("Running migration {MigrationStep}", "AddContentGuardRelationType");
 
             var contentGuardRelationType = _relationService.GetRelationTypeByAlias("contentguard");
-            if (contentGuardRelationType != null) return;
+
+            if (contentGuardRelationType != null)
+            {
+                return;
+            }
 
             // Insert custom relation type to Umbraco DB
             contentGuardRelationType =

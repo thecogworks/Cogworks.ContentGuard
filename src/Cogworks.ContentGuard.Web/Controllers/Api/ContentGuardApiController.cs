@@ -19,7 +19,7 @@ namespace BackOfficeContentBlocker.Web.Controllers.Api
         public IHttpActionResult IsLocked(int pageId, string ownerUsername)
         {
             var isPageLocked = _contentGuardService.IsLocked(pageId, ownerUsername);
-            var currentlyEditingUserName = _contentGuardService.PageDetails(pageId);
+            var currentlyEditingUserName = _contentGuardService.GetPageEditingUser(pageId);
 
             return Json(new
             {
