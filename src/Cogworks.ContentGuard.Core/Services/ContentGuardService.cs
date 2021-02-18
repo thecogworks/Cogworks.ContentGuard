@@ -14,19 +14,19 @@ namespace Cogworks.ContentGuard.Core.Services
 
     internal class ContentGuardService : IContentGuardService
     {
-        private readonly string _contentGuardRelationTypeAlias = "contentguard";
+        private const string ContentGuardRelationTypeAlias = "contentguard";
 
         private readonly IRelationService _relationService;
         private readonly IRelationType _contentGuardRelationType;
         public ContentGuardService(IRelationService relationService)
         {
             _relationService = relationService;
-            _contentGuardRelationType = _relationService.GetRelationTypeByAlias(_contentGuardRelationTypeAlias);
+            _contentGuardRelationType = _relationService.GetRelationTypeByAlias(ContentGuardRelationTypeAlias);
         }
 
         public bool IsLocked(int pageId, string ownerUsername)
         {
-            var existingLocks = _relationService.GetByParentOrChildId(pageId, _contentGuardRelationTypeAlias);
+            var existingLocks = _relationService.GetByParentOrChildId(pageId, ContentGuardRelationTypeAlias);
 
             return existingLocks.Any(x => !x.Comment.Equals(ownerUsername));
         }
@@ -45,7 +45,7 @@ namespace Cogworks.ContentGuard.Core.Services
 
         public string GetPageEditingUser(int pageId)
         {
-            var existingLocks = _relationService.GetByParentOrChildId(pageId, _contentGuardRelationTypeAlias);
+            var existingLocks = _relationService.GetByParentOrChildId(pageId, ContentGuardRelationTypeAlias);
 
             return existingLocks != null && existingLocks.Any()
                 ? existingLocks.FirstOrDefault(x => x.ParentId.Equals(pageId)).Comment
@@ -55,7 +55,7 @@ namespace Cogworks.ContentGuard.Core.Services
         public void Unlock(int pageId)
         {
             var existingLocks =
-                _relationService.GetByParentOrChildId(pageId, _contentGuardRelationTypeAlias);
+                _relationService.GetByParentOrChildId(pageId, ContentGuardRelationTypeAlias);
 
             foreach (var pageLock in existingLocks)
             {
