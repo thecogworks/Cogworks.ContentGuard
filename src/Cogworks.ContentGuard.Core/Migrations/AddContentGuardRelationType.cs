@@ -18,14 +18,14 @@ namespace Cogworks.ContentGuard.Core.Migrations
         {
             Logger.Debug<AddContentGuardRelationType>("Running migration {MigrationStep}", "AddContentGuardRelationType");
 
-            var contentGuartRelationType = _relationService.GetRelationTypeByAlias("contentguard");
-            if (contentGuartRelationType != null) return;
+            var contentGuardRelationType = _relationService.GetRelationTypeByAlias("contentguard");
+            if (contentGuardRelationType != null) return;
 
             // Insert custom relation type to Umbraco DB
-            contentGuartRelationType =
+            contentGuardRelationType =
                 new RelationType("Relate (Lock) the Document with the Owner", "contentguard", true, null, null);
 
-            _relationService.Save(contentGuartRelationType);
+            _relationService.Save(contentGuardRelationType);
         }
     }
 }
