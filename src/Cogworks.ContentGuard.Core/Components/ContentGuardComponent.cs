@@ -8,7 +8,7 @@ using Umbraco.Core.Services;
 
 namespace Cogworks.ContentGuard.Core.Components
 {
-    public class ContentGuardComponent : IComponent
+    internal class ContentGuardComponent : IComponent
     {
         private readonly IScopeProvider _scopeProvider;
         private readonly IMigrationBuilder _migrationBuilder;

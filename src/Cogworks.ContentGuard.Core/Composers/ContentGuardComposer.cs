@@ -5,14 +5,13 @@ using Umbraco.Core.Composing;
 
 namespace Cogworks.ContentGuard.Core.Composers
 {
-    [RuntimeLevel(MinLevel = RuntimeLevel.Run)]
-    public class ContentGuardComposer : IUserComposer
+    internal class ContentGuardComposer : IUserComposer
     {
         public void Compose(Composition composition)
         {
             composition.Register<IContentGuardService, ContentGuardService>();
 
-            composition.Components().Append<ContentGuardComponent>();
+            _ = composition.Components().Append<ContentGuardComponent>();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Cogworks.ContentGuard.Core.Services
         void Unlock(int pageId);
     }
 
-    public class ContentGuardService : IContentGuardService
+    internal class ContentGuardService : IContentGuardService
     {
         private readonly string _contentGuardRelationTypeAlias = "contentguard";
 

@@ -5,7 +5,7 @@ using Umbraco.Core.Services;
 
 namespace Cogworks.ContentGuard.Core.Migrations
 {
-    public class AddContentGuardRelationType : MigrationBase
+    internal class AddContentGuardRelationType : MigrationBase
     {
         private IRelationService _relationService;
 
