@@ -3,7 +3,7 @@ using Cogworks.ContentGuard.Core.Services;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Mvc;
 
-namespace BackOfficeContentBlocker.Web.Controllers.Api
+namespace Cogworks.ContentGuard.Web.Controllers.Api
 {
     [PluginController("ContentGuard")]
     public class ContentGuardApiController : UmbracoAuthorizedJsonController
