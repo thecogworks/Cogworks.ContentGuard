@@ -30,7 +30,7 @@
                                         var overlay = {
                                             title: "🛡️ Content Guard - This page is locked",
                                             confirmMessage: data.currentlyEditingUserName + " is currently editing this page. Do you want to take over?",
-                                            content: "If you'll take over, the changes not saved by " + data.currentlyEditingUserName + " might got lost.",
+                                            content: "If you take over, any unsaved changes made by " + data.currentlyEditingUserName + " may be lost.",
                                             disableBackdropClick: true,
                                             closeButtonLabelKey: "contentGuard_closeLabel",
                                             submitButtonLabelKey: "contentGuard_submitLabel",
