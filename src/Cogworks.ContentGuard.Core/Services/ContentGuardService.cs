@@ -18,6 +18,7 @@ namespace Cogworks.ContentGuard.Core.Services
 
         private readonly IRelationService _relationService;
         private readonly IRelationType _contentGuardRelationType;
+
         public ContentGuardService(IRelationService relationService)
         {
             _relationService = relationService;
