@@ -13,9 +13,7 @@
 
                 var unsubscribeGuardContentSave = eventsService.on("guard.ContentSave",
                     function (event, args) {
-                        tryBlockContent({
-                             pageId: args.id
-                        });
+                        tryBlockContent(args.id);
                         event.preventDefault();
                     });
 
@@ -52,7 +50,7 @@
                         });
                 }
 
-                function tryBlockContent(postSaveData = undefined) {
+                function tryBlockContent(pageId = undefined) {
                     var currentTab = editorState.current.apps.find(x => x.active === true);
                     var tabAlias = currentTab.alias;
 
@@ -62,15 +60,13 @@
 
                     var createUrlRegex = /.*\/umbraco.*\/content.*\/edit\/.*create=true.*$/i;
 
-                    if (postSaveData === undefined && createUrlRegex.test(window.location.href)) {
+                    if (pageId === undefined && createUrlRegex.test(window.location.href)) {
                         return;
                     }
 
                     userService.getCurrentUser().then(function (user) {
-                        var pageId = editorState.current.id;
-
-                        if (postSaveData !== undefined && postSaveData.pageId !== undefined) {
-                            pageId = postSaveData.pageId;
+                        if (pageId === undefined) {
+                            pageId = editorState.current.id;
                         }
 
                         if (pageId === undefined || pageId === 0 || pageId === -1) {
