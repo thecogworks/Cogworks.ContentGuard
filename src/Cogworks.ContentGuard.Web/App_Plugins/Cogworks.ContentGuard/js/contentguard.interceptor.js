@@ -16,7 +16,7 @@
                         }
                     }
 
-                    return response || $q.whenDefined(response);
+                    return response || $q.when(response);
                 }
             };
         });
