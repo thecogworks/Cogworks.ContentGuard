@@ -40,7 +40,7 @@
                             vm.notification = "Page successfully unlocked. You will be redirected to root page in a moment.";
 
                             setTimeout(function () {
-                                window.location.href = "/umbraco#/content";
+                                window.location.replace("/umbraco");
                             }, 2500);
                         }, function (error) {
                             vm.buttonState = "error";
