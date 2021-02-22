@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     "use strict";
 
     angular.module("umbraco")
@@ -95,7 +95,7 @@
                                 close: function () {
                                     overlayService.close();
                                     // + Redirect to main Content area = leave the page?
-                                    window.location.href = "/umbraco/#/content";
+                                    window.location.replace("/umbraco");
                                 },
                                 submit: function () {
                                     // UNLOCK + redirect? set up lock?
