@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cogworks.ContentGuard.Core"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cogworks.ContentGuard", "Cogworks.ContentGuard\Cogworks.ContentGuard.csproj", "{58BD1F1D-77DA-479F-8857-46A080F7A324}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cogworks.ContentGuard.Web", "Cogworks.ContentGuard.Web\Cogworks.ContentGuard.Web.csproj", "{DA74BDA1-F90E-4776-8192-394E13D257D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{58BD1F1D-77DA-479F-8857-46A080F7A324}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58BD1F1D-77DA-479F-8857-46A080F7A324}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58BD1F1D-77DA-479F-8857-46A080F7A324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA74BDA1-F90E-4776-8192-394E13D257D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA74BDA1-F90E-4776-8192-394E13D257D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA74BDA1-F90E-4776-8192-394E13D257D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA74BDA1-F90E-4776-8192-394E13D257D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

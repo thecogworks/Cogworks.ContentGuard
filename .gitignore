@@ -211,3 +211,5 @@ src/**/local
 # Other
 src/.vs
 ood.flag
+
+src/Cogworks.ContentGuard.Web/App_Plugins/**/*.*
