@@ -11,7 +11,7 @@
                         event.preventDefault();
                     });
 
-                var unsubscribeGuardContentSave = eventsService.on("guard.ContentSave",
+                var unsubscribeGuardContentSave = eventsService.on("guard.contentSave",
                     function (event, args) {
                         tryBlockContent(args.id);
                         event.preventDefault();
