@@ -6,7 +6,7 @@
             function ($scope, $rootScope, editorState, contentGuardService, overlayService, userService, eventsService) {
 
                 var unsubscribeAppTabChange = eventsService.on("app.tabChange",
-                    function(event, args) {
+                    function (event, args) {
                         tryBlockContent();
                         event.preventDefault();
                     });
@@ -18,7 +18,7 @@
                     });
 
                 $scope.$on("$destroy",
-                    function() {
+                    function () {
                         unsubscribeAppTabChange();
                         unsubscribeGuardContentSave();
                     });
@@ -33,8 +33,9 @@
 
                 function clickCommand() {
                     vm.buttonState = "busy";
+                    var pageId = editorState.current.id;
 
-                    contentGuardService.unlockPage(editorState.current.id)
+                    contentGuardService.unlockPage(pageId)
                         .then(function () {
                             vm.buttonState = "success";
                             vm.notification = "Page successfully unlocked. You will be redirected to root page in a moment.";
@@ -98,10 +99,10 @@
                                     window.location.replace("/umbraco");
                                 },
                                 submit: function () {
-                                    // UNLOCK + redirect? set up lock?
                                     contentGuardService.unlockPage(pageId)
                                         .then(function () {
-                                            window.location.reload();
+                                            overlayService.close();
+                                            contentGuardService.lockPage(pageId, user.name);
                                         });
                                 }
                             };
