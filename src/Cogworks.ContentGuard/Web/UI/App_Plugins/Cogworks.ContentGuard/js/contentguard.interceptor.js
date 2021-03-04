@@ -12,7 +12,7 @@
                     if (response.config.url.includes('/umbraco/backoffice/UmbracoApi/Content/PostSave')) {
                         if (response.status === 200) {
                             var eventsService = $injector.get('eventsService');
-                            eventsService.emit('guard.ContentSave', response.data);
+                            eventsService.emit('guard.contentSave', response.data);
                         }
                     }
 
