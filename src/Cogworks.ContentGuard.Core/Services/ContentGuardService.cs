@@ -33,13 +33,6 @@ namespace Cogworks.ContentGuard.Core.Services
                 : string.Empty;
         }
 
-        public bool IsLocked(int pageId, string ownerUsername)
-        {
-            var existingLocks = _relationService.GetByParentOrChildId(pageId, ContentGuardRelationTypeAlias);
-
-            return existingLocks.Any(x => !x.Comment.Equals(ownerUsername));
-        }
-
         public bool IsLocked(IRelation relation, string ownerUsername)
         {
             return relation != null && !relation.Comment.Equals(ownerUsername);
