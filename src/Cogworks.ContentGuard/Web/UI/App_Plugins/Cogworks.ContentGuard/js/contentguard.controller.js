@@ -4,7 +4,7 @@
     angular
       .module('umbraco')
       .controller(
-        'Cogworks.Guard.Controller',
+        'Cogworks.ContentGuard.Controller',
         function ($scope, editorState, contentGuardService, overlayService, userService, eventsService, localizationService) {
           var vm = this;
 
