@@ -13,6 +13,10 @@
 
                 var unsubscribeGuardContentSave = eventsService.on("guard.ContentSave",
                     function (event, args) {
+                        if (args && args.isElement) {
+                            return;
+                        }
+
                         tryBlockContent(args.id);
                         event.preventDefault();
                     });
