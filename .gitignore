@@ -213,3 +213,5 @@ src/.vs
 ood.flag
 
 src/Cogworks.ContentGuard.Web/App_Plugins/**/*.*
+
+src/Cogworks.ContentGuard/Cogworks.ContentGuard.nuspec
