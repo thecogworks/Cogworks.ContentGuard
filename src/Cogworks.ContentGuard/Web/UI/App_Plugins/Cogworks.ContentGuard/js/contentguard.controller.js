@@ -3,7 +3,7 @@
 
     angular.module("umbraco")
         .controller("Cogworks.Guard.Controller",
-            function ($scope, $rootScope, editorState, contentGuardService, overlayService, userService, eventsService) {
+            function ($scope, $rootScope, editorState, contentGuardService, overlayService, userService, eventsService, localizationService) {
 
                 var unsubscribeAppTabChange = eventsService.on("app.tabChange",
                     function(event, args) {
@@ -26,14 +26,12 @@
                 var vm = this;
 
                 vm.buttonState = "init";
-                vm.clickCommand = clickCommand;
+                vm.unlockButtonClick = unlockButtonClick;
                 vm.notification = "";
 
                 tryBlockContent();
 
-                function clickCommand() {
-                    vm.buttonState = "busy";
-
+                function unlockCurrentPage() {
                     contentGuardService.unlockPage(editorState.current.id)
                         .then(function () {
                             vm.buttonState = "success";
@@ -48,6 +46,40 @@
 
                             console.log("Unlocking page failed", error);
                         });
+                }
+
+                function unlockButtonClick() {
+                    vm.buttonState = "busy";
+
+                    var currentVersion = editorState.current.variants.find(v => v.active === true);
+                    var isDirty = currentVersion && currentVersion.isDirty === true;
+
+                    if (isDirty) {
+                        localizationService.localizeMany(["prompt_unsavedChanges", "prompt_unsavedChangesWarning", "prompt_discardChanges", "prompt_stay"]).then(
+                            function (values) {
+                                var overlay = {
+                                    "view": "default",
+                                    "title": values[0],
+                                    "content": values[1],
+                                    "disableBackdropClick": true,
+                                    "disableEscKey": true,
+                                    "submitButtonLabel": values[2],
+                                    "closeButtonLabel": values[3],
+                                    submit: function () {
+                                        overlayService.close();
+                                        unlockCurrentPage();
+                                    },
+                                    close: function () {
+                                        overlayService.close();
+                                        vm.buttonState = "init";
+                                        vm.notification = "";
+                                    }
+                                };
+
+                                overlayService.open(overlay);
+                            }
+                        );
+                    }
                 }
 
                 function tryBlockContent(pageId = undefined) {
