@@ -18,8 +18,10 @@ namespace Cogworks.ContentGuard.Web.Controllers.Api
         [HttpGet]
         public IHttpActionResult IsLocked(int pageId, string ownerUsername)
         {
-            var isPageLocked = _contentGuardService.IsLocked(pageId, ownerUsername);
-            var currentlyEditingUserName = _contentGuardService.GetPageEditingUser(pageId);
+            var pageLockDetails = _contentGuardService.GetPageLockDetails(pageId);
+            var isPageLocked = _contentGuardService.IsLocked(pageLockDetails, ownerUsername);
+            var currentlyEditingUserName = _contentGuardService.GetPageEditingUser(pageLockDetails);
+
 
             return Json(new
             {
