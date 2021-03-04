@@ -1,115 +1,147 @@
 (function () {
-    "use strict";
+  'use strict';
 
-    angular.module("umbraco")
-        .controller("Cogworks.Guard.Controller",
-            function ($scope, $rootScope, editorState, contentGuardService, overlayService, userService, eventsService) {
+  angular
+    .module('umbraco')
+    .controller(
+      'Cogworks.Guard.Controller',
+      function ($scope, editorState, contentGuardService, overlayService, userService, eventsService, localizationService) {
+        var vm = this;
 
-                var unsubscribeAppTabChange = eventsService.on("app.tabChange",
-                    function (event, args) {
-                        tryBlockContent();
-                        event.preventDefault();
-                    });
+        vm.buttonState = 'init';
+        vm.unlockButtonClick = unlockButtonClick;
+        vm.notification = '';
 
-                var unsubscribeGuardContentSave = eventsService.on("guard.contentSave",
-                    function (event, args) {
-                        tryBlockContent(args.id);
-                        event.preventDefault();
-                    });
+        var unsubscribeAppTabChange = eventsService.on('app.tabChange', function (event) {
+          tryBlockContent();
+          event.preventDefault();
+        });
 
-                $scope.$on("$destroy",
-                    function () {
-                        unsubscribeAppTabChange();
-                        unsubscribeGuardContentSave();
-                    });
+        var unsubscribeGuardContentSave = eventsService.on('guard.contentSave', function (event, args) {
+          tryBlockContent(args.id);
+          event.preventDefault();
+        });
 
-                var vm = this;
+        $scope.$on('$destroy', function () {
+          unsubscribeAppTabChange();
+          unsubscribeGuardContentSave();
+        });
 
-                vm.buttonState = "init";
-                vm.clickCommand = clickCommand;
-                vm.notification = "";
+        tryBlockContent();
 
-                tryBlockContent();
+        function unlockCurrentPage() {
+          var pageId = editorState.current.id;
+          contentGuardService.unlockPage(pageId).then(
+            function () {
+              vm.buttonState = 'success';
+              vm.notification = 'Page successfully unlocked. You will be redirected to root page in a moment.';
 
-                function clickCommand() {
-                    vm.buttonState = "busy";
-                    var pageId = editorState.current.id;
+              setTimeout(function () {
+                window.location.replace('/umbraco');
+              }, 2500);
+            },
+            function (error) {
+              vm.buttonState = 'error';
+              vm.notification = 'There was a problem unlocking this page. Please try again.';
 
-                    contentGuardService.unlockPage(pageId)
-                        .then(function () {
-                            vm.buttonState = "success";
-                            vm.notification = "Page successfully unlocked. You will be redirected to root page in a moment.";
+              console.log('Unlocking page failed', error);
+            }
+          );
+        }
 
-                            setTimeout(function () {
-                                window.location.replace("/umbraco");
-                            }, 2500);
-                        }, function (error) {
-                            vm.buttonState = "error";
-                            vm.notification = "There was a problem unlocking this page. Please try again.";
+        function unlockButtonClick() {
+          vm.buttonState = 'busy';
 
-                            console.log("Unlocking page failed", error);
-                        });
-                }
+          var currentVersion = editorState.current.variants.find((v) => v.active === true);
+          var isDirty = currentVersion && currentVersion.isDirty === true;
 
-                function tryBlockContent(pageId = undefined) {
-                    var currentTab = editorState.current.apps.find(x => x.active === true);
-                    var tabAlias = currentTab.alias;
+          if (isDirty) {
+            localizationService
+              .localizeMany(['prompt_unsavedChanges', 'prompt_unsavedChangesWarning', 'prompt_discardChanges', 'prompt_stay'])
+              .then(function (values) {
+                var overlay = {
+                  view: 'default',
+                  title: values[0],
+                  content: values[1],
+                  disableBackdropClick: true,
+                  disableEscKey: true,
+                  submitButtonLabel: values[2],
+                  closeButtonLabel: values[3],
+                  submit: function () {
+                    overlayService.close();
+                    unlockCurrentPage();
+                  },
+                  close: function () {
+                    overlayService.close();
+                    vm.buttonState = 'init';
+                    vm.notification = '';
+                  },
+                };
 
-                    if (!(tabAlias === "umbContent" || tabAlias === "umbInfo")) {
-                        return;
-                    }
+                overlayService.open(overlay);
+              });
+          }
+        }
 
-                    var createUrlRegex = /.*\/umbraco.*\/content.*\/edit\/.*create=true.*$/i;
+        function tryBlockContent(pageId = undefined) {
+          var currentTab = editorState.current.apps.find((x) => x.active === true);
+          var tabAlias = currentTab.alias;
 
-                    if (pageId === undefined && createUrlRegex.test(window.location.href)) {
-                        return;
-                    }
+          if (!(tabAlias === 'umbContent' || tabAlias === 'umbInfo')) {
+            return;
+          }
 
-                    userService.getCurrentUser().then(function (user) {
-                        if (pageId === undefined) {
-                            pageId = editorState.current.id;
-                        }
+          var createUrlRegex = /.*\/umbraco.*\/content.*\/edit\/.*create=true.*$/i;
 
-                        if (pageId === undefined || pageId === 0 || pageId === -1) {
-                            return;
-                        }
+          if (pageId === undefined && createUrlRegex.test(window.location.href)) {
+            return;
+          }
 
-                        contentGuardService.isPageLocked(pageId, user.name).then(function (data) {
+          userService.getCurrentUser().then(function (user) {
+            if (pageId === undefined) {
+              pageId = editorState.current.id;
+            }
 
-                            // 1. If page is not LOCKED = enter and LOCK it for the current user (comment)
-                            // 2. If page is LOCKED = display the notification message and let user decide what to do
-                            // 3. Option 1 after point 2: Leave = redirect to the main /content url = don't touch this page
-                            // 4. Option 2 after point 2: Takeover = UNLOCK the page and LOCK for the user who triggered the action
+            if (pageId === undefined || pageId === 0 || pageId === -1) {
+              return;
+            }
 
-                            if (!data.isPageLocked) {
-                                contentGuardService.lockPage(pageId, user.name);
-                                return;
-                            }
+            contentGuardService.isPageLocked(pageId, user.name).then(function (data) {
+              // 1. If page is not LOCKED = enter and LOCK it for the current user (comment)
+              // 2. If page is LOCKED = display the notification message and let user decide what to do
+              // 3. Option 1 after point 2: Leave = redirect to the main /content url = don't touch this page
+              // 4. Option 2 after point 2: Takeover = UNLOCK the page and LOCK for the user who triggered the action
 
-                            var overlay = {
-                                title: "🛡️ Content Guard - This page is locked",
-                                confirmMessage: data.currentlyEditingUserName + " is currently editing this page. Do you want to take over?",
-                                content: "If you take over, any unsaved changes made by " + data.currentlyEditingUserName + " may be lost.",
-                                disableBackdropClick: true,
-                                closeButtonLabelKey: "contentGuard_closeLabel",
-                                submitButtonLabelKey: "contentGuard_submitLabel",
-                                close: function () {
-                                    overlayService.close();
-                                    // + Redirect to main Content area = leave the page?
-                                    window.location.replace("/umbraco");
-                                },
-                                submit: function () {
-                                    contentGuardService.unlockPage(pageId)
-                                        .then(function () {
-                                            overlayService.close();
-                                            contentGuardService.lockPage(pageId, user.name);
-                                        });
-                                }
-                            };
+              if (!data.isPageLocked) {
+                contentGuardService.lockPage(pageId, user.name);
+                return;
+              }
 
-                            overlayService.confirm(overlay);
-                        });
-                    });
-                }
+              var overlay = {
+                title: '🛡️ Content Guard - This page is locked',
+                confirmMessage: data.currentlyEditingUserName + ' is currently editing this page. Do you want to take over?',
+                content: 'If you take over, any unsaved changes made by ' + data.currentlyEditingUserName + ' may be lost.',
+                disableBackdropClick: true,
+                closeButtonLabelKey: 'contentGuard_closeLabel',
+                submitButtonLabelKey: 'contentGuard_submitLabel',
+                close: function () {
+                  overlayService.close();
+                  // + Redirect to main Content area = leave the page?
+                  window.location.replace('/umbraco');
+                },
+                submit: function () {
+                  // UNLOCK + redirect? set up lock?
+                  contentGuardService.unlockPage(pageId).then(function () {
+                    overlayService.close();
+                    contentGuardService.lockPage(pageId, user.name);
+                  });
+                },
+              };
+
+              overlayService.confirm(overlay);
             });
+          });
+        }
+      }
+    );
 })();
