@@ -84,6 +84,8 @@
 
                   overlayService.open(overlay);
                 });
+            } else {
+              unlockCurrentPage();
             }
           }
 
