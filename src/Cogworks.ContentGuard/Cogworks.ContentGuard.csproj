@@ -252,6 +252,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Web\UI\App_Plugins\Cogworks.ContentGuard\img\protection.png" />
     <Content Include="Web\UI\App_Plugins\Cogworks.ContentGuard\views\guard-content.html" />
     <None Include="app.config" />
     <None Include="Web\UI\App_Plugins\Cogworks.ContentGuard\package.manifest" />
