@@ -255,6 +255,7 @@
     <Content Include="Web\UI\App_Plugins\Cogworks.ContentGuard\img\protection.png" />
     <Content Include="Web\UI\App_Plugins\Cogworks.ContentGuard\views\guard-content.html" />
     <None Include="app.config" />
+    <None Include="Cogworks.ContentGuard.nuspec" />
     <None Include="Web\UI\App_Plugins\Cogworks.ContentGuard\package.manifest" />
     <None Include="Cogworks.ContentGuard.nuspec.template" />
     <None Include="packages.config" />

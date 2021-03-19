@@ -1,25 +1,25 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <package>
-	<metadata>
-		<id>{{-id}}</id>
-		<version>{{-version}}</version>
-		<title>{{-title}}</title>
-		<authors>{{-author}}</authors>
-		<owners>{{-author}}</owners>
-		<licenseUrl>{{-licenseUrl}}</licenseUrl>
-		<projectUrl>{{-projectUrl}}</projectUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>{{-description}}</description>
-		<copyright>{{-copyright}}</copyright>
-		<tags>{{-tags}}</tags>
-		<dependencies>
-			<dependency id="UmbracoCms.Core" version="8.9.0" />
-			<dependency id="UmbracoCms.Web" version="8.9.0" />
-		</dependencies>
-	</metadata>
-	<files>
-    	<file src="Web\UI\**\*.*" target="content" />
-		<file src="bin\Release\Cogworks.ContentGuard.dll" target="lib\net472" />
-		<file src="bin\Release\Cogworks.ContentGuard.Core.dll" target="lib\net472" />
-	</files>
+    <metadata>
+        <id>{{-id}}</id>
+        <version>{{-version}}</version>
+        <title>{{-title}}</title>
+        <authors>{{-author}}</authors>
+        <owners>{{-author}}</owners>
+        <licenseUrl>{{-licenseUrl}}</licenseUrl>
+        <projectUrl>{{-projectUrl}}</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>{{-description}}</description>
+        <copyright>{{-copyright}}</copyright>
+        <tags>{{-tags}}</tags>
+        <dependencies>
+            <dependency id="UmbracoCms.Core" version="8.9.0" />
+            <dependency id="UmbracoCms.Web" version="8.9.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="Web\UI\**\*.*" target="content" />
+        <file src="bin\Release\Cogworks.ContentGuard.dll" target="lib\net472" />
+        <file src="bin\Release\Cogworks.ContentGuard.Core.dll" target="lib\net472" />
+    </files>
 </package>
