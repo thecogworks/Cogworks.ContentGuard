@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Cogworks.ContentGuard</id>
+    <version>$version$</version>
+    <title>Cogworks.ContentGuard</title>
+    <authors>Cogworks</authors>
+    <owners>Cogworks</owners>
+    <projectUrl>https://github.com/thecogworks/Cogworks.ContentGuard</projectUrl>
+    <repository type="git" url="https://github.com/thecogworks/Cogworks.ContentGuard" />
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A package for Umbraco CMS allowing to seamleassly lock down pages for the specific editor to avoid overwriting content with simultanous changes.</description>
+    <copyright>The Cogworks Limited 2021</copyright>
+    <tags>umbraco, content-management, umbraco-v8, umbraco-v8-backoffice, editors-experience</tags>
+    <dependencies>
+      <group targetFramework="net472">
+        <dependency id="UmbracoCms.Core" version="8.9.0" />
+        <dependency id="UmbracoCms.Web" version="8.9.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Web\UI\**\*.*" target="content" />
+    <file src="bin\Release\**\Cogworks.ContentGuard.dll" target="lib\net472" />
+    <file src="bin\Release\**\Cogworks.ContentGuard.Core.dll" target="lib\net472" />
+  </files>
+</package>
