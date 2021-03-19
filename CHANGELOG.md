@@ -1,3 +1,7 @@
+## [1.1.1](https://github.com/thecogworks/Cogworks.ContentGuard/compare/1.1.0...1.1.1) (2021-03-19)
+
+
+
 # [1.1.0](https://github.com/thecogworks/Cogworks.ContentGuard/compare/f2d2414d9f440a2ef711e1e112f606150fdf1be3...1.1.0) (2021-03-19)
 
 
