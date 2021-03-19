@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <language alias="en" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
-    <area alias="contentGuard">
-        <key alias="closeLabel">Leave page</key>
-        <key alias="submitLabel">Take over</key>
-    </area>
+  <area alias="contentGuard">
+    <key alias="closeLabel">Leave page</key>
+    <key alias="submitLabel">Take over</key>
+    <key alias="unlockLabel">Unlock page for other editors</key>
+  </area>
 </language>

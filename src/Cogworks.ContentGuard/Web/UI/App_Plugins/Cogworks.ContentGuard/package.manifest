@@ -3,7 +3,7 @@
     {
       "name": "Content Guard",
       "alias": "contentGuard",
-      "weidht": "1",
+      "weight": 1,
       "icon": "icon-shield",
       "view": "~/App_Plugins/Cogworks.ContentGuard/views/guard-content.html",
       "show": [

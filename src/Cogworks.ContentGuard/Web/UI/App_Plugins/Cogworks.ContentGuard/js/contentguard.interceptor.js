@@ -1,23 +1,29 @@
-﻿angular.module("umbraco.services").config([
+﻿(() => {
 
-    "$httpProvider",
+    angular
+        .module("umbraco.services")
+        .config([
 
-    function ($httpProvider) {
-        // See: https://dev.to/skttl/how-to-customize-searching-in-umbraco-list-views-1knk
-        // See: https://skrift.io/issues/changing-backoffice-functionality-without-changing-core-code/
+            "$httpProvider",
 
-        $httpProvider.interceptors.push(function ($q, $injector) {
-            return {
-                'response': function(response) {
-                    if (response.config.url.includes('/umbraco/backoffice/UmbracoApi/Content/PostSave')) {
-                        if (response.status === 200) {
-                            var eventsService = $injector.get('eventsService');
-                            eventsService.emit('guard.contentSave', response.data);
+            function ($httpProvider) {
+                // See: https://dev.to/skttl/how-to-customize-searching-in-umbraco-list-views-1knk
+                // See: https://skrift.io/issues/changing-backoffice-functionality-without-changing-core-code/
+
+                $httpProvider.interceptors.push(function ($q, $injector) {
+                    return {
+                        'response': function (response) {
+                            if (response.config.url.includes('/umbraco/backoffice/UmbracoApi/Content/PostSave')) {
+                                if (response.status === 200) {
+                                    var eventsService = $injector.get('eventsService');
+                                    eventsService.emit('guard.contentSave', response.data);
+                                }
+                            }
+
+                            return response || $q.when(response);
                         }
-                    }
+                    };
+                });
+            }]);
 
-                    return response || $q.when(response);
-                }
-            };
-        });
-    }]);
+})();

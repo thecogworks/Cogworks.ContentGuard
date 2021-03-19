@@ -2,24 +2,36 @@
     <umb-box>
         <umb-box-header title="Content Guard"></umb-box-header>
         <umb-box-content>
-            <div>
-                <p>This page is currently locked, would you like to unlock this page for editing purposes? </p>
-
-                <div>
-                    <p><strong>Note:</strong> while you are editing the page this blocks other users from making content changes.</p>
-                </div>
-            </div>
-            <umb-button action="vm.unlockButtonClick()"
-                        type="button"
-                        button-style="action"
-                        state="vm.buttonState"
-                        label="Unlock"
-                        disabled="vm.buttonState === 'busy'">
-            </umb-button>
-
-            <hr />
             <div ng-if="vm.notification">
-                <p>{{vm.notification}}</p>
+                <p ng-if="vm.buttonState === 'success'" class="alert alert-block fadeIn alert-success">{{vm.notification}}</p>
+                <p ng-if="vm.buttonState === 'error'" class="alert alert-block fadeIn alert-error">{{vm.notification}}</p>
+                <hr />
+            </div>
+            <div class="row">
+                <div class="span8">
+                    <h3>This page is currently <strong><i class="icon icon-lock"></i> locked</strong> for you.</h3>
+
+                    <p>
+                        You are now free to edit the content of this page.<br />
+                        Content Guard blocks other editors from accessing the page and prevents overwriting changes.
+                    </p>
+
+                    <p>
+                        <small><strong>Note:</strong> Other editors can still intentionally take over the page.</small>
+                    </p>
+
+                    <umb-button action="vm.unlockButtonClick()"
+                                type="button"
+                                icon="icon-unlocked"
+                                button-style="action"
+                                state="vm.buttonState"
+                                label-key="contentGuard_unlockLabel"
+                                disabled="vm.buttonState === 'busy'">
+                    </umb-button>
+                </div>
+                <div class="span4">
+                    <img src="/App_Plugins/Cogworks.ContentGuard/img/protection.png" alt="Protection Illustration" />
+                </div>
             </div>
         </umb-box-content>
     </umb-box>
