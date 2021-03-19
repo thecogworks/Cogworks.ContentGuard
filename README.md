@@ -1,4 +1,4 @@
-# Cogworks.ContentGuard &middot; [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE.md) [![Github Build](https://img.shields.io/github/workflow/status/thecogworks/cogworks.contentguard/Changelog%20generator%20and%20NuGet%20Releasing)](https://github.com/thecogworks/Cogworks.ContentGuard/actions?query=workflow%3A%22Changelog+generator+and+NuGet+Releasing%22) [![NuGet Version](https://img.shields.io/nuget/v/Cogworks.ContentGuard)](https://www.nuget.org/packages/Cogworks.ContentGuard/) [![Our Umbraco project page](https://img.shields.io/badge/our-umbraco-orange.svg)]() [![codecov](https://codecov.io/gh/thecogworks/Cogworks.ContentGuard/branch/master/graph/badge.svg?token=UMLJ5S8UJX)](undefined)
+# Cogworks.ContentGuard &middot; [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE.md) [![Github Build](https://img.shields.io/github/workflow/status/thecogworks/Cogworks.ContentGuard/Build)](https://github.com/thecogworks/Cogworks.ContentGuard/actions?query=workflow%3A%22Build%22) [![NuGet Version](https://img.shields.io/nuget/v/Cogworks.ContentGuard)](https://www.nuget.org/packages/Cogworks.ContentGuard/) [![Our Umbraco project page](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.com/packages/backoffice-extensions/content-guard/) [![codecov](https://codecov.io/gh/thecogworks/Cogworks.ContentGuard/branch/master/graph/badge.svg?token=UMLJ5S8UJX)](undefined)
 
 A package for Umbraco CMS allowing to seamleassly lock down pages for the specific editor to avoid overwriting content with simultanous changes.
 
@@ -9,6 +9,10 @@ This package is supported on Umbraco 8.9+.
 ## Installation
 
 Cogworks.ContentGuard is available to be downloaded from Our Umbraco, NuGet or as a manual download directly from GitHub.
+
+### Our Umbraco repository
+
+You can find a downloadable package, along with a discussion forum for this package, on the [Our Umbraco](https://our.umbraco.com/packages/backoffice-extensions/content-guard/) site.
 
 ### NuGet package repository
 
