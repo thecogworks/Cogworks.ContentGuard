@@ -1,7 +1,7 @@
 {
   "version": "1.1.0",
-  "name": "Cogworks.ContentGuard",
-  "url": "https://github.com/thecogworks/backoffice-content-blocker",
+  "name": "cogworks-contentguard",
+  "url": "https://github.com/thecogworks/Cogworks.ContentGuard",
   "license": {
     "name": "Apache-2.0",
     "url": "https://github.com/thecogworks/Cogworks.ContentGuard/blob/master/LICENSE.md",
