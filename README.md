@@ -1,6 +1,6 @@
 # Cogworks.ContentGuard &middot; [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE.md) [![Github Build](https://img.shields.io/github/workflow/status/thecogworks/Cogworks.ContentGuard/Build)](https://github.com/thecogworks/Cogworks.ContentGuard/actions?query=workflow%3A%22Build%22) [![NuGet Version](https://img.shields.io/nuget/v/Cogworks.ContentGuard)](https://www.nuget.org/packages/Cogworks.ContentGuard/) [![Our Umbraco project page](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.com/packages/backoffice-extensions/content-guard/) [![codecov](https://codecov.io/gh/thecogworks/Cogworks.ContentGuard/branch/master/graph/badge.svg?token=UMLJ5S8UJX)](undefined)
 
-A package for Umbraco CMS allowing to seamleassly lock down pages for the specific editor to avoid overwriting content with simultanous changes.
+A package for Umbraco CMS allowing to seamlessly lock down pages for the specific editor to avoid overwriting content with simultaneous changes.
 
 ## Getting started
 
