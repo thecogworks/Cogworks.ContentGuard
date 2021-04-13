@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/thecogworks/Cogworks.ContentGuard/compare/1.1.2...1.1.3) (2021-04-13)
+
+
+### Bug Fixes
+
+* added content guard as last tab item ([d5907d1](https://github.com/thecogworks/Cogworks.ContentGuard/commit/d5907d12d5bec05bdbd6c20a2027bf38d63841cc))
+
+
+
 ## [1.1.2](https://github.com/thecogworks/Cogworks.ContentGuard/compare/1.1.1...1.1.2) (2021-03-19)
 
 
