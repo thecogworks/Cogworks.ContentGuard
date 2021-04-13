@@ -1,9 +1,9 @@
-﻿{
+{
   "contentApps": [
     {
       "name": "Content Guard",
       "alias": "contentGuard",
-      "weight": 1,
+      "weight": 101,
       "icon": "icon-shield",
       "view": "~/App_Plugins/Cogworks.ContentGuard/views/guard-content.html",
       "show": [
