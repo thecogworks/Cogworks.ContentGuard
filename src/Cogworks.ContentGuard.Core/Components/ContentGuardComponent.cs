@@ -1,49 +1,65 @@
 ﻿using Cogworks.ContentGuard.Core.Migrations;
-using Umbraco.Core.Composing;
-using Umbraco.Core.Logging;
-using Umbraco.Core.Migrations;
-using Umbraco.Core.Migrations.Upgrade;
-using Umbraco.Core.Scoping;
-using Umbraco.Core.Services;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Umbraco.Cms.Core.Composing;
 
-namespace Cogworks.ContentGuard.Core.Components
+using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Infrastructure.Migrations;
+using Umbraco.Cms.Infrastructure.Migrations.Upgrade;
+using Umbraco.Cms.Infrastructure.Scoping;
+
+namespace Cogworks.ContentGuard.Core.Components;
+
+
+
+internal class ContentGuardComponent : IComponent
 {
-    internal class ContentGuardComponent : IComponent
+
+    private readonly IScopeProvider _scopeProvider;
+    private readonly IScopeAccessor _scopeAccessor;
+    private readonly IMigrationBuilder _migrationBuilder;
+    private readonly IKeyValueService _keyValueService;
+    private readonly ILogger _logger;
+    private readonly ILoggerFactory _loggerFactory;
+
+    public ContentGuardComponent(IScopeProvider scopeProvider, IMigrationBuilder migrationBuilder,
+        IKeyValueService keyValueService, ILogger<ContentGuardComponent> logger, IScopeAccessor scopeAccessor, ILoggerFactory loggerFactory)
     {
-        private readonly IScopeProvider _scopeProvider;
-        private readonly IMigrationBuilder _migrationBuilder;
-        private readonly IKeyValueService _keyValueService;
-        private readonly ILogger _logger;
+        _scopeProvider = scopeProvider;
+        _migrationBuilder = migrationBuilder;
+        _keyValueService = keyValueService;
+        _logger = logger;
+        _scopeAccessor = scopeAccessor;
+        _loggerFactory = loggerFactory;
+    }
 
-        public ContentGuardComponent(IScopeProvider scopeProvider, IMigrationBuilder migrationBuilder,
-            IKeyValueService keyValueService, ILogger logger)
-        {
-            _scopeProvider = scopeProvider;
-            _migrationBuilder = migrationBuilder;
-            _keyValueService = keyValueService;
-            _logger = logger;
-        }
+    public void Initialize()
+    {
+        // Create a migration plan for a specific project/feature
+        // We can then track that latest migration state/step for this project/feature
+        var migrationPlan = new MigrationPlan("ContentGuard");
 
-        public void Initialize()
-        {
-            // Create a migration plan for a specific project/feature
-            // We can then track that latest migration state/step for this project/feature
-            var migrationPlan = new MigrationPlan("ContentGuard");
+        // This is the steps we need to take
+        // Each step in the migration adds a unique value
+        migrationPlan.From(string.Empty)
+            .To<AddContentGuardRelationType>("contentguard-init");
 
-            // This is the steps we need to take
-            // Each step in the migration adds a unique value
-            migrationPlan.From(string.Empty)
-                .To<AddContentGuardRelationType>("contentguard-init");
+        // Go and upgrade our site (Will check if it needs to do the work or not)
+        // Based on the current/latest step
+        var upgrader = new Upgrader(migrationPlan);
+        var executor = new MigrationPlanExecutor(_scopeProvider, _scopeAccessor, _loggerFactory, _migrationBuilder);
+        upgrader.Execute(executor, _scopeProvider, _keyValueService);
+    }
 
-            // Go and upgrade our site (Will check if it needs to do the work or not)
-            // Based on the current/latest step
-            var upgrader = new Upgrader(migrationPlan);
-
-            upgrader.Execute(_scopeProvider, _migrationBuilder, _keyValueService, _logger);
-        }
-
-        public void Terminate()
-        {
-        }
+    public void Terminate()
+    {
     }
 }
+
+
+
+

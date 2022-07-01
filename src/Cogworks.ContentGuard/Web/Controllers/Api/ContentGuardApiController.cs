@@ -1,49 +1,59 @@
-﻿using System.Web.Http;
-using Cogworks.ContentGuard.Core.Services;
-using Umbraco.Web.Editors;
-using Umbraco.Web.Mvc;
+﻿using Cogworks.ContentGuard.Core.Services;
+using Cogworks.ContentGuard.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Umbraco.Cms.Web.BackOffice.Controllers;
+using Umbraco.Cms.Web.BackOffice.Filters;
+using Umbraco.Cms.Web.Common.Attributes;
 
-namespace Cogworks.ContentGuard.Web.Controllers.Api
+namespace Cogworks.ContentGuard.Web.Controllers.Api;
+
+
+
+[PluginController("ContentGuard")]
+public class ContentGuardApiController : UmbracoAuthorizedJsonController
 {
-    [PluginController("ContentGuard")]
-    public class ContentGuardApiController : UmbracoAuthorizedJsonController
+    private readonly IContentGuardService _contentGuardService;
+
+    public ContentGuardApiController(IContentGuardService contentGuardService)
     {
-        private readonly IContentGuardService _contentGuardService;
+        _contentGuardService = contentGuardService;
+    }
+    
+    
+    [HttpGet]
+    [JsonCamelCaseFormatter]
+    public LockInformation IsLocked(int pageId, string ownerUsername)
+    {
+        var pageLockDetails = _contentGuardService.GetPageLockDetails(pageId);
+        var isPageLocked = _contentGuardService.IsLocked(pageLockDetails, ownerUsername);
+        var currentlyEditingUserName = _contentGuardService.GetPageEditingUser(pageLockDetails);
 
-        public ContentGuardApiController(IContentGuardService contentGuardService)
+        return new LockInformation()
         {
-            _contentGuardService = contentGuardService;
-        }
+            CurrentlyEditingUserName = currentlyEditingUserName,
+            IsPageLocked = isPageLocked
+        };
+    }
 
-        [HttpGet]
-        public IHttpActionResult IsLocked(int pageId, string ownerUsername)
-        {
-            var pageLockDetails = _contentGuardService.GetPageLockDetails(pageId);
-            var isPageLocked = _contentGuardService.IsLocked(pageLockDetails, ownerUsername);
-            var currentlyEditingUserName = _contentGuardService.GetPageEditingUser(pageLockDetails);
+    [HttpGet]
+    public IActionResult Lock(int pageId, string ownerUsername)
+    {
+        _contentGuardService.Lock(pageId, ownerUsername);
 
+        return Ok();
+    }
 
-            return Json(new
-            {
-                isPageLocked,
-                currentlyEditingUserName
-            });
-        }
+    [HttpGet]
+    public IActionResult Unlock(int pageId)
+    {
+        _contentGuardService.Unlock(pageId);
 
-        [HttpGet]
-        public IHttpActionResult Lock(int pageId, string ownerUsername)
-        {
-            _contentGuardService.Lock(pageId, ownerUsername);
-
-            return Ok();
-        }
-
-        [HttpGet]
-        public IHttpActionResult Unlock(int pageId)
-        {
-            _contentGuardService.Unlock(pageId);
-
-            return Ok();
-        }
+        return Ok();
     }
 }
+
