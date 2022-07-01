@@ -1,4 +1,4 @@
-﻿using Cogworks.ContentGuard.Core.Migrations;
+using Cogworks.ContentGuard.Core.Migrations;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -26,6 +26,7 @@ internal class ContentGuardComponent : IComponent
     private readonly ILogger _logger;
     private readonly ILoggerFactory _loggerFactory;
 
+
     public ContentGuardComponent(IScopeProvider scopeProvider, IMigrationBuilder migrationBuilder,
         IKeyValueService keyValueService, ILogger<ContentGuardComponent> logger, IScopeAccessor scopeAccessor, ILoggerFactory loggerFactory)
     {
@@ -52,7 +53,12 @@ internal class ContentGuardComponent : IComponent
         // Based on the current/latest step
         var upgrader = new Upgrader(migrationPlan);
         var executor = new MigrationPlanExecutor(_scopeProvider, _scopeAccessor, _loggerFactory, _migrationBuilder);
-        upgrader.Execute(executor, _scopeProvider, _keyValueService);
+        try {
+            upgrader.Execute(executor, _scopeProvider, _keyValueService);
+        } catch (Exception ex) {
+            _logger.LogDebug($"no connections string, please perform the umbraco installation!");
+        }
+        
     }
 
     public void Terminate()
